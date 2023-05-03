@@ -1,0 +1,85 @@
+body {
+    padding-top: 5rem;
+}
+
+.starter-template {
+    padding: 1rem 0.5rem;
+    text-align: center;
+}
+
+h1{
+    color:#0000FF;
+}
+
+h2{
+    color: black;
+}
+
+select {
+    text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
+}
+
+.table-container {
+
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+.table td {
+    vertical-align: middle;
+}
+
+#error {
+    text-align: center;
+}
+
+#unchecked {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#success {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#resend {
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#select {
+    padding:1rem;
+    width: 50%;
+    margin: auto;
+}
+
+#filterInput {
+    margin-bottom: 1%;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+tbody tr:hover {
+    box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.2)!important;
+}
+
+.form-select {
+    background-color: #8ca3a3;
+    border-color: white;
+    color: white;
+    font-weight: bold;
+}

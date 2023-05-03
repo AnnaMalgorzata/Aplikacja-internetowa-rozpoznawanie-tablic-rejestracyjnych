@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Praca inzynierska</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+    <!-- Google Fonts -->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+
+</head>
+
+
+<body>
+<section th:replace="fragments/navbar.html :: topBar"></section>
+<header th:replace="fragments/navbar.html :: topNavigation"></header>
+
+<main role="main" class="container-fluid">
+
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <p th:if="${message ne null}" th:text="${message}" class="alert alert-primary"></p>
+                    <hr />
+                    <h2 style="text-align:center;"> Wgraj zdjęcie samochodu </h2>
+                    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="file" name="image" accept="image/*" class="form-control-file">
+                        </div>
+                        <button type="submit" class="btn btn-dark"> Sprawdź abonament </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <br> <br>
+
+        <div th:if="${not#lists.isEmpty(schedules)}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center;"> ID </th>
+                        <th style="text-align:center;"> ID SAMOCHODU </th>
+                        <th style="text-align:center;"> ID ABONAMENTU </th>
+                        <th style="text-align:center;"> ID PŁATNOŚCI </th>
+                        <th style="text-align:center;"> DATA POCZĄTKOWA </th>
+                        <th style="text-align:center;"> DATA KOŃCOWA </th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr th:each="schedule: ${schedules}">
+                            <td style="text-align:center;"><span th:text="${schedule.id}"> ID </span></td>
+                            <td style="text-align:center;"><span th:text="${schedule.carId}"> ID SAMOCHODU </span></td>
+                            <td style="text-align:center;"><span th:text="${schedule.abonamentId}"> ID ABONAMENTU </span></td>
+                            <td style="text-align:center;"><span th:text="${schedule.paymentId}"> ID PŁATNOŚCI </span> </td>
+                            <td style="text-align:center;"><span th:text="${schedule.startDate}"> DATA POCZĄTKOWA </span></td>
+                            <td style="text-align:center;"><span th:text="${schedule.endDate}"> DATA KOŃCOWA </span></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${not#lists.isEmpty(cars)}" class="table-container"    >
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center;"> ID </th>
+                        <th style="text-align:center;"> TABLICA REJESTRACYJNA </th>
+                        <th style="text-align:center;"> MARKA SAMOCHODU </th>
+                        <th style="text-align:center;"> MODEL SAMOCHODU </th>
+                        <th style="text-align:center;"> ID UŻYTKOWNIKA </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="car: ${cars}">
+                        <td style="text-align:center;"><span th:text="${car.id}"> ID </span></td>
+                        <td style="text-align:center;"><span th:text="${car.licensePlate}"> TABLICA REJESTRACYJNA </span></td>
+                        <td style="text-align:center;"><span th:text="${car.manufacturer}"> MARKA SAMOCHODU </span></td>
+                        <td style="text-align:center;"><span th:text="${car.brand}"> MODEL SAMOCHODU </span> </td>
+                        <td style="text-align:center;"><span th:text="${car.userId}"> ID UŻYTKOWNIKA </span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${not#lists.isEmpty(payments)}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center;"> ID </th>
+                        <th style="text-align:center;"> TYP PŁATNOŚCI </th>
+                        <th style="text-align:center;"> ZNIŻKA </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="payment: ${payments}">
+                        <td style="text-align:center;"><span th:text="${payment.id}"> ID </span></td>
+                        <td style="text-align:center;"><span th:text="${payment.type}"> TYP PŁATNOŚCI </span></td>
+                        <td style="text-align:center;"><span th:text="${payment.reducedValue}"> ZNIŻKA </span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${not#lists.isEmpty(users)}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center;"> ID </th>
+                        <th style="text-align:center;"> IMIĘ</th>
+                        <th style="text-align:center;"> NAZWISKO </th>
+                        <th style="text-align:center;"> WIEK </th>
+                        <th style="text-align:center;"> E-MAIL </th>
+                        <th style="text-align:center;"> NAZWA UŻYTKOWNIKA </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user: ${users}">
+                        <td style="text-align:center;"><span th:text="${user.id}"> ID </span></td>
+                        <td style="text-align:center;"><span th:text="${user.firstName}"> IMIĘ </span></td>
+                        <td style="text-align:center;"><span th:text="${user.lastName}"> NAZWISKO </span></td>
+                        <td style="text-align:center;"><span th:text="${user.age}"> WIEK </span></td>
+                        <td style="text-align:center;"><span th:text="${user.email}"> E-MAIL </span></td>
+                        <td style="text-align:center;"><span th:text="${user.username}"> NAZWA UŻYTKOWNIKA </span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

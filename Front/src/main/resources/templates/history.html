@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Praca inzynierska</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+    <!-- Google Fonts -->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+
+</head>
+
+
+<body>
+
+<section th:replace="fragments/navbar.html :: topBar"></section>
+
+<header th:replace="fragments/navbar.html :: topNavigation"></header>
+
+<main role="main" class="container-fluid">
+
+    <section class="my-5">
+        <div class="container">
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center;"> ID </th>
+                        <th style="text-align:center;"> NAZWA PLIKU </th>
+                        <th style="text-align:center;"> ROZMIAR PLIKU </th>
+<!--                        <th style="text-align:center;"> PLIK </th>-->
+                        <th style="text-align:center;"> TABLICA REJESTRACYJNA </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="photo: ${photos}">
+                        <td style="text-align:center;"><span th:text="${photo.id}"> ID </span></td>
+                        <td style="text-align:center;"><span th:text="${photo.fileName}"> NAZWA PLIKU </span></td>
+<!--                        <td style="text-align:center;"><span th:text="${photo.file}"> PLIK </span></td>-->
+                        <td style="text-align:center;"><span th:text="${photo.fileSize}"> ROZMIAR PLIKU </span></td>
+                        <td style="text-align:center;"><span th:text="${photo.licensePlate}"> TABLICA REJESTRACYJNA </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

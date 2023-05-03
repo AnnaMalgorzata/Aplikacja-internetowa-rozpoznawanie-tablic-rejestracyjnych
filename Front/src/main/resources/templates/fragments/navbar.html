@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Praca inzynierska</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+
+    <!-- Google Fonts -->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+</head>
+
+
+<body>
+<!-- ======= Top Bar ======= -->
+<section th:fragment="topBar" id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+            <i class="fa" >&#xf0e0;<a
+            >contact@example.com</a></i>
+            <i class="fa"> &nbsp; &nbsp; &#9742;<span>+1 5589 55488 55</span></i>
+
+        </div>
+        <form th:if="${session.userId != null}" class="float-end" th:action="@{/logout}" method="post">
+            <input type="submit" class="btn btn-primary btn-sm" value="Wyloguj się" />
+        </form>
+
+    </div>
+</section>
+
+<header th:fragment="topNavigation" id="header" class="nav d-flex justify-content-center">
+
+    <div th:if="${session.userId == null}" class="div d-flex justify-content-center justify-content-between">
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" th:href="@{/}">Strona główna</a></li>
+                <li><a class="nav-link" th:href="@{/registration}">Rejestracja</a></li>
+                <li><a class="nav-link" th:href="@{/login}">Logowanie</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#contact}">Kontakt</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div th:if="${session.userId != null}" class="div d-flex justify-content-center justify-content-between">
+        <nav th:if="${session.admin}" class="navbar">
+                <ul>
+                    <li><a class="nav-link" th:href="@{/}">Strona główna</a></li>
+<!--                    <li><a class="nav-link" th:text="${session.userId}"></a></li>-->
+                    <li><a class="nav-link" th:href="@{/database}">Wykupione abonamenty</a></li>
+                    <li><a class="nav-link" th:href="@{/uploadimage}">Sprawdzanie abonamentu</a></li>
+                    <li><a class="nav-link" th:href="@{/history}">Historia</a></li>
+                    <li><a class="nav-link scrollto" th:href="@{/#contact}">Kontakt</a></li>
+                </ul>
+        </nav>
+        <nav th:if="!${session.admin}" class="navbar">
+            <ul>
+                <li><a class="nav-link" th:href="@{/}">Strona główna</a></li>
+<!--                <li><a class="nav-link" th:text="${session.userId}"></a></li>-->
+                <li><a class="nav-link" th:href="@{/infoUser}">Moje konto</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#contact}">Kontakt</a></li>
+            </ul>
+<!--            <form th:action="@{/logout}" method="post">-->
+<!--                <div>-->
+<!--                    <input type="submit" value="Logout" />-->
+<!--                </div>-->
+<!--            </form>-->
+        </nav>
+    </div>
+</header>
+
+
+<main role="main" class="container-fluid">
+
+    <div th:fragment="userRegistration">
+        <h2 style="text-align:center;">Utwórz konto</h2><br>
+        <form th:action="@{/user}" th:object="${user}" method="post">
+            <div class="form-group row">
+                <div class="col-6 col-md-4">
+                    <label>Imię: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" name="name" class="form-control" id="name" th:field="*{firstName}"
+                       required>
+                </div>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-6 col-md-4">
+                    <label>Nazwisko: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" class="form-control" th:field="*{lastName}"
+                       required>
+                </div>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-6 col-md-4">
+                    <label>Wiek: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="number" min="16" max="100" class="form-control" th:field="*{age}">
+                </div>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-6 col-md-4">
+                    <label>Adres e-mail: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="email" class="form-control" th:field="*{email}"
+                       required>
+                </div>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-6 col-md-4">
+                    <label>Nazwa użytkownika: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" class="form-control" th:field="*{username}"
+                       required>
+                </div>
+            </div> <br>
+            <div class="form-group row">
+                <div class="col-6 col-md-4">
+                    <label>Hasło: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="password" class="form-control" th:field="*{password}"
+                       required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Stwórz konto</button>
+<!--            button than /save mapping runs and get the object of the employee and save that object into database.-->
+        </form>
+    </div>
+
+    <div th:fragment="carRegistration">
+        <h2 style="text-align:center;">Dane samochodu</h2><br>
+        <form th:action="@{/car}" th:object="${car}" method="post">
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Numer tablicy rejestracyjnej: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" class="form-control" th:field="*{licensePlate}"
+                           required>
+                </div>
+            </div> <br>
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Marka samochodu: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" class="form-control" th:field="*{manufacturer}"
+                            required>
+                </div>
+            </div> <br>
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Model samochodu: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <input type="text" class="form-control" th:field="*{brand}"
+                           required>
+                </div>
+            </div> <br>
+            <div>
+                <input type="hidden" class="form-control" th:name="*{userId}" th:value="${userId}">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Zapisz</button>
+            <a href="/">Pomiń</a>
+        </form>
+    </div>
+
+    <div th:fragment="scheduleRegistration">
+        <h2 style="text-align:center;">Wybór abonamentu</h2>
+        <form th:action="@{/schedule}" th:object="${scheduleHelperBean}" method="post"> <br>
+
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Typ abonamentu: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <select class="custom-select mr-sm-2" name="abonamentType">
+                        <option th:each="typeOpt:
+            ${T(org.pracainzynierska.model.AbonamentType).values()}"
+                                th:value="${typeOpt}" th:text="${typeOpt.displayValue}"></option>
+                    </select>
+                </div>
+
+
+            </div> <br>
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Niepełnosprawność: </label>
+                </div>
+                <div class="col-12 col-md-8">
+                    <select class="custom-select mr-sm-2" name="priority">
+                        <option th:each="YesNo:
+            ${T(org.pracainzynierska.model.YesNoType).values()}"
+                                th:value="${YesNo}" th:text="${YesNo.displayValue}"></option>
+                    </select>
+                </div>
+
+            </div> <br>
+
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Abonament ulgowy: </label>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <select class="custom-select mr-sm-2" name="discount">
+                        <option th:each="YesNo:
+            ${T(org.pracainzynierska.model.YesNoType).values()}"
+                                th:value="${YesNo}" th:text="${YesNo.displayValue}"></option>
+                    </select>
+                </div>
+
+            </div> <br>
+
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Cykliczność abonamentu: </label>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <input style="text-align:center;" type="number" min="0" class="form-control" th:field="*{multipleCount}">
+                </div>
+            </div> <br>
+
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Rodzaj platności: </label>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <select class="custom-select mr-sm-2" name="paymentType">
+                        <option th:each="typeOpt:
+            ${T(org.pracainzynierska.model.PaymentType).values()}"
+                                th:value="${typeOpt}" th:text="${typeOpt.displayValue}"></option>
+                    </select>
+                </div>
+
+            </div> <br>
+
+            <div class="form-row">
+                <div class="col-6 col-md-4">
+                    <label>Zniżka </label>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <select class="custom-select mr-sm-2" id="reducedValue" name="reducedValue">
+                        <option value="0">0</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+
+            </div> <br>
+            <div class="form-row">
+                <div class="col-6">
+                    <label for="scheduleHelperBean-start-date">Data początkowa: </label>
+                    <input type="date" th:field="${scheduleHelperBean.startDate}" id="scheduleHelperBean-start-date"/>
+                </div>
+
+                <div class="col-6">
+                    <label for="scheduleHelperBean-end-date">Data końcowa: </label>
+                    <input type="date" th:field="${scheduleHelperBean.endDate}" id="scheduleHelperBean-end-date"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary btn-block mt-3">Zapisz</button>
+            </div>
+        </form>
+    </div>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

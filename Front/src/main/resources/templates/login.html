@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Praca inzynierska</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+    <!-- Google Fonts -->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+
+</head>
+
+<body>
+
+<section th:replace="fragments/navbar.html :: topBar"></section>
+
+<header th:replace="fragments/navbar.html :: topNavigation"></header>
+
+<div class="container">
+    <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
+                <form name="f" th:action="@{/login}" method="post">
+                    <fieldset>
+                        <!-- Thymeleaf + Spring Security error display -->
+                        <div th:if="${param.error}" class="alert alert-danger">
+                            Nieprawidłowa nazwa użytkownika lub hasło.
+                        </div>
+
+                        <!-- Login Controls -->
+                        <div class="form-row">
+                            <div class="col-6 col-md-4">
+                                <label for="username">Nazwa użytkownika</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
+                        </div> <br>
+
+                        <div class="form-row">
+                            <div class="col-6 col-md-4">
+                                <label for="password">Hasło</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                        </div>
+
+                        <!-- Login Button -->
+                        <div class="form-actions" style="margin-top: 12px;">
+                            <button type="submit" class="btn btn-primary btn-block mt-3">Zaloguj się</button>
+                        </div>
+                    </fieldset>
+                </form>
+    </div>
+</div>
+</body>
+</html>

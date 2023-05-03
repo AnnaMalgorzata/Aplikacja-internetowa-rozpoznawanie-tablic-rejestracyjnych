@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Praca inzynierska</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+    <!-- Google Fonts -->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/static/vendor/aos/aos.css}" rel="stylesheet"/>
+    <link th:href="@{/static/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet"/>
+    <link th:href="@{/static/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet"/>
+</head>
+
+
+<body>
+
+<!-- ======= Top Bar ======= -->
+<section th:replace="fragments/navbar.html :: topBar"></section>
+
+
+<!-- ======= Header ======= -->
+<header th:replace="fragments/navbar.html :: topNavigation"></header>
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <h1>Parking<span>.</span></h1>
+        <h2>Dysponujemy ponad 1300 miejscami parkingowymi. </h2>
+        <div th:if="${session.userId == null}" class="d-flex">
+            <a th:href="@{/registration}" class="btn-get-started">Rejestracja</a>
+            <a th:href="@{/login}" class="btn"><span>Logowanie</span></a>
+        </div>
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                        <h4 class="title"><a href="">Sezonowy</a></h4>
+                        <p class="description">Abonament umożliwia parkowanie na wszystkich parkingach Tauron Areny
+                        bez ograniczeń czasowych.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon"><i class="bx bx-file"></i></div>
+                        <h4 class="title"><a href="">Nocny</a></h4>
+                        <p class="description">Nocny abonament obejmuje parkowanie od godziny 20:00 do 9:00
+                            przez wszystkie dni w tygodniu.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Dzienny</a></h4>
+                        <p class="description">Abonament dzienny obejmuje parkowanie codziennie od godziny 6:00 do 18:00. </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon"><i class="bx bx-world"></i></div>
+                        <h4 class="title"><a href="">Weekendowy</a></h4>
+                        <p class="description">Abonament umożliwia parkowanie w soboty i niedziele bez ograniczeń czasowych.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Featured Services Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>O nas</h2>
+                <h3>Dowiedz się więcej <span>o nas</span></h3>
+                <p> Zasady wjazdu na teren obiektu i korzystania z parkingów. </p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                    <img th:src="@{/images/img/mapka.jpg}" class="img-fluid" alt=""/>
+                </div>
+                <div class="col-lg-6 pt-4 content flex-column justify-content-center justify-content-between">
+<!--                    <h3> Wielofunkcyjność obiektu </h3>-->
+                    <ul>
+                        <li>
+                            <i class="bx bx-store-alt"></i>
+                            <div>
+                                <h5> Parking naziemny </h5>
+                                <p> Wjazd i wyjazd na parking możliwe są codziennie w godzinach od 4:30 do 23:30.
+                                    Maksymalna dopuszczalna waga samochodu to 2.5 t, wjazd mają również samochody
+                                    z instalacją LPG. </p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bx bx-images"></i>
+                            <div>
+                                <h5> Parking podziemny</h5>
+                                <p> Samochody w pierwszej kolejności powinny korzystać z parkingu naziemnego.
+                                    Wjazd i wyjazd z parkingu podziemnego możliwe są codziennie w godzinach od 7:30 do 23:00.
+                                    Maksymalna masa samochodu nie powinna przekraczać 2.5 t a jego wysokość powinna być poniżej 2 m.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="bx bx-store-alt"></i>
+                            <div>
+                                <h5> Parking VIP </h5>
+                                <p> Wjazd i wyjazd z parkingu możliwe są bez ograniczeń czasowych. Osoba nieuprawniona, która
+                                    pozostawi pojazd na parkingu VIP zostanie obciążona dodatkową opłatą w wysokości 150 zł za dobę.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Kontakt</h2>
+                <h3><span>Skontaktuj się z nami</span></h3>
+                <p>Spółka zarządzająca parkingiem jest czynna
+                    od poniedziałku do piątku od godziny 8:00 do 16:00.</p>
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="col-lg-6 ">
+                    <iframe class="mb-4 mb-lg-0"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.172844547738!2d19.92364456983643!3d50.06432457360155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b09fa7263bf%3A0x89193a9abbcc4bb7!2saleja%20Adama%20Mickiewicza%2C%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1672831208539!5m2!1spl!2spl"
+                            frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+                </div>
+
+                <div class="col-lg-6">
+                        <div class="mb-4 mb-lg-0">
+                            <div class="info-box">
+                                <i class="fa">&#128392;</i>
+                                <h3> Adres </h3>
+                                <p> al. Mickiewicza 30, Kraków </p>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 mb-lg-0">
+                            <div class="info-box">
+                                <i class="fa">&#128386</i>
+                                <h3> Adres e-mail </h3>
+                                <p> contact@example.com </p>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row justify-content-end">
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4> Nasze usługi </h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Strona główna</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a th:href="@{/#about}">O nas</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a th:href="@{/login}">Logowanie</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a th:href="@{/registration}">Rejestracja</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h3>Parking<span>.</span></h3>
+                    <p>
+                        Parking Kraków <br>
+                        al. Mickiewicza 30 <br>
+                        30-059 Kraków <br>
+                        <strong>Telefon:</strong> +1 5589 55488 55<br>
+                        <strong>E-mail:</strong> info@example.com<br>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

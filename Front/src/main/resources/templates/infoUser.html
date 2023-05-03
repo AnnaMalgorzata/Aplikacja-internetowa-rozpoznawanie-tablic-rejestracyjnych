@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Praca inzynierska</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+    <!-- Google Fonts -->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+
+</head>
+
+
+<body>
+
+<section th:replace="fragments/navbar.html :: topBar"></section>
+
+<header th:replace="fragments/navbar.html :: topNavigation"></header>
+
+<main role="main" class="container-fluid">
+
+    <section class="my-5">
+
+        <div th:if="${userInfo != null}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th style="text-align:center;"> IMIĘ </th>
+                    <th style="text-align:center;"> NAZWISKO </th>
+                    <th style="text-align:center;"> WIEK </th>
+                    <th style="text-align:center;"> E-MAIL </th>
+                    <th style="text-align:center;"> NAZWA UŻYTKOWNIKA </th>
+                </tr>
+                </thead>
+                <tbody>
+                <td style="text-align:center;"><span th:text="${userInfo.firstName}"> IMIĘ </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.lastName}"> NAZWISKO </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.age}"> WIEK </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.email}"> E-MAIL </span> </td>
+                <td style="text-align:center;"><span th:text="${userInfo.username}"> NAZWA UŻYTKOWNIKA </span></td>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${#lists.isEmpty(carInfo)}" class="table-container" style="text-align:center;">
+            <a href="/registration_car">Wybierz abonament</a>
+        </div>
+        <div th:if="${not#lists.isEmpty(carInfo)}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th style="text-align:center;"> TABLICA REJESTRACYJNA </th>
+                    <th style="text-align:center;"> MARKA SAMOCHODU </th>
+                    <th style="text-align:center;"> MODEL SAMOCHODU </th>
+                </tr>
+                </thead>
+                <tbody>
+                <td style="text-align:center;"><span th:text="${userInfo.licensePlate}"> TABLICA REJESTRACYJNA </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.manufacturer}"> MARKA SAMOCHODU </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.brand}"> MODEL SAMOCHODU </span> </td>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${not#lists.isEmpty(abonamentInfo)}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th style="text-align:center;"> TYP ABONAMENTU </th>
+                    <th style="text-align:center;"> NIEPEŁNOSPRAWNOŚĆ </th>
+                    <th style="text-align:center;"> DATA POCZĄTKOWA </th>
+                    <th style="text-align:center;"> DATA KOŃCOWA </th>
+                </tr>
+                </thead>
+                <tbody>
+                <td style="text-align:center;"><span th:text="${userInfo.abonamentType}"> TYP ABONAMENTU </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.priority}"> NIEPEŁNOSPRAWNOŚĆ </span></td>
+                <td style="text-align:center;"><span th:text="${#dates.format(userInfo.startDate, 'dd-MM-yyyy')}"> DATA POCZĄTKOWA </span></td>
+                <td style="text-align:center;"><span th:text="${#dates.format(userInfo.endDate, 'dd-MM-yyyy')}"> DATA KOŃCOWA </span></td>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${not#lists.isEmpty(paymentInfo)}" class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th style="text-align:center;"> RODZAJ PŁATNOŚCI </th>
+                    <th style="text-align:center;"> ZNIŻKA </th>
+                </tr>
+                </thead>
+                <tbody>
+                <td style="text-align:center;"><span th:text="${userInfo.paymentType}"> RODZAJ PŁATNOŚCI </span></td>
+                <td style="text-align:center;"><span th:text="${userInfo.reducedValue}"> ZNIŻKA </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
