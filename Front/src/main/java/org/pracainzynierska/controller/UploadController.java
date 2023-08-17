@@ -61,7 +61,7 @@ public class UploadController {
 
         } else {
             model.addAttribute("message", "Samochód z rejestracją " + licensePlate + " posiada abonament.");
-            model.addAttribute("abonaments", queryInfo.getAbonament()); //przekazujemy stronie informacje, które udało się poobrać z web serwisu
+            model.addAttribute("abonaments", queryInfo.getAbonament());
         }
 
         if (queryInfo.getCar() != null) {
