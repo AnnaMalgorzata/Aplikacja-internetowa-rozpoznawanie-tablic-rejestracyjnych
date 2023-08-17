@@ -27,17 +27,15 @@ public class UserController {
     }
 
 
-    @GetMapping("/registration") //przekazujemy na stronę
-    public String registration(Model model) { //(@ModelAttribute User user, @ModelAttribute Car car,...)
-        //zmienna sesyjna currentPage (watości - user/car/schedule) w zależności od jej wartości ifki w htmlu
+    @GetMapping("/registration")
+    public String registration(Model model) { 
         User user = new User();
-        model.addAttribute("user", user); //stronka registration ma dostęp do obiektu user który można uzupełnić
-        return "registration"; //cały czas na registration
+        model.addAttribute("user", user);
+        return "registration";
     }
 
     @GetMapping("/registration_car")
-    public String registrationCar(Model model) { //(@ModelAttribute User user, @ModelAttribute Car car,...)
-        //zmienna sesyjna currentPage (watości - user/car/schedule) w zależności od jej wartości ifki w htmlu
+    public String registrationCar(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
 
@@ -64,7 +62,7 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("/car") //obiekt ze strony przekazywany jest do backendu
+    @PostMapping("/car")
     public String registrationSaveCar(@ModelAttribute Car car, Model model, HttpSession session) {
         car.setUserId((int) session.getAttribute("userId"));
 
@@ -83,25 +81,23 @@ public class UserController {
         session.setAttribute("carId", carId);
         model.addAttribute("carId", carId);
 
-        ScheduleHelperBean scheduleHelperBean = new ScheduleHelperBean(); //bo jak wejdziemy na stronkę to chcemy mieć pusty obiekt abonament
+        ScheduleHelperBean scheduleHelperBean = new ScheduleHelperBean();
         model.addAttribute("scheduleHelperBean", scheduleHelperBean);
         return "registration";
     }
 
-    @PostMapping("/schedule") //obiekt ze strony przekazujemy do backendu
+    @PostMapping("/schedule")
     public String registrationSaveSchedule(@ModelAttribute ScheduleHelperBean scheduleHelperBean, Model model, HttpSession session) {
         Abonament abonament = new Abonament();
         Payment payment = new Payment();
         Schedule schedule = new Schedule();
-
-        //abonament, który nie został jeszcze wpisany do bazy
+        
         abonament.setDiscount(scheduleHelperBean.getDiscount());
         abonament.setType(scheduleHelperBean.getAbonamentType());
         abonament.setPriority(scheduleHelperBean.getPriority());
         abonament.setMultipleCount(scheduleHelperBean.getMultipleCount());
 
-        //wpisanie abonamentu do bazy, uzyskujemy id -yey!
-        int abonamentId = wsClient.saveAbonament(abonament); //saveAbonament zwraca int - Abonament Controller w PI-WS
+        int abonamentId = wsClient.saveAbonament(abonament);
         session.setAttribute("priority", abonament.getPriority());
 
         payment.setType(scheduleHelperBean.getPaymentType());
@@ -128,7 +124,6 @@ public class UserController {
         int userId = (int)session.getAttribute("userId");
         model.addAttribute("userId", userId);
 
-        //pobranie z ws uzytkownika i sprawdzenie czy jest adminem
         User user = wsClient.getUser(userId);
 
         session.setAttribute("admin", user.isAdmin() ? true : false);
