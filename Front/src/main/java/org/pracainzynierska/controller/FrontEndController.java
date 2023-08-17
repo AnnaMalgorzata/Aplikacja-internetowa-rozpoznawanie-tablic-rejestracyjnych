@@ -16,7 +16,6 @@ import java.util.List;
 @Controller
 public class FrontEndController {
 
-    //przekazuje na front (do strony internetowej)
     @Autowired
     private WSClient wsClient;
 
