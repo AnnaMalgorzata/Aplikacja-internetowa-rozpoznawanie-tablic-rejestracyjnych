@@ -71,21 +71,6 @@
       <artifactId>lombok</artifactId>
       <version>1.18.6</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>wsdl4j</groupId>-->
-<!--      <artifactId>wsdl4j</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>joda-time</groupId>-->
-<!--      <artifactId>joda-time</artifactId>-->
-<!--      <version>2.10.13</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>com.oracle</groupId>-->
-<!--      <artifactId>ojdbc6</artifactId>-->
-<!--      <version>11.2.0.3</version>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -134,50 +119,21 @@
       <artifactId>jjwt</artifactId>
       <version>0.9.1</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>com.github.javadev</groupId>-->
-<!--      <artifactId>underscore</artifactId>-->
-<!--      <version>1.72</version>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.10</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>wsdl4j</groupId>-->
-<!--      <artifactId>wsdl4j</artifactId>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>net.sourceforge.tess4j</groupId>
       <artifactId>tess4j</artifactId>
       <version>4.5.4</version>
     </dependency>
-
-
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>org.bytedeco.javacpp-presets</groupId>-->
-<!--      <artifactId>opencv</artifactId>-->
-<!--      <version>4.0.1-1.4.4</version>-->
-<!--    </dependency>-->
-
-    <!-- https://mvnrepository.com/artifact/org.openpnp/opencv -->
     <dependency>
       <groupId>org.openpnp</groupId>
       <artifactId>opencv</artifactId>
       <version>4.5.1-2</version>
     </dependency>
-
-<!--    <dependency>-->
-<!--      <groupId>org.bytedeco</groupId>-->
-<!--      <artifactId>opencv</artifactId>-->
-<!--      <version>4.5.5-1.5.7</version>-->
-<!--      <scope>system</scope>-->
-<!--      <systemPath>${project.basedir}/src/main/resources/opencv-455.jar</systemPath>-->
-<!--    </dependency>-->
-
   </dependencies>
 
   <build>
@@ -198,43 +154,6 @@
         </execution>
       </executions>
     </plugin>
-<!--    <plugin>-->
-<!--      <groupId>org.codehaus.mojo</groupId>-->
-<!--      <artifactId>jaxb2-maven-plugin</artifactId>-->
-<!--      <version>2.5.0</version>-->
-<!--      <executions>-->
-<!--        <execution>-->
-<!--          <id>xjc</id>-->
-<!--          <goals>-->
-<!--            <goal>xjc</goal>-->
-<!--          </goals>-->
-<!--        </execution>-->
-<!--      </executions>-->
-<!--      <configuration>-->
-<!--        <sources>-->
-<!--          <source>${project.basedir}/src/main/resources/</source>-->
-<!--        </sources>-->
-<!--        <xjcSourceExcludeFilters>-->
-<!--          <filter implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">-->
-<!--            <patterns>-->
-<!--              <patter>\.properties</patter>-->
-<!--              <patter>\.wsdl</patter>-->
-<!--              <patter>\.cat</patter>-->
-<!--              <patter>\.xml</patter>-->
-<!--              <patter>\.cer</patter>-->
-<!--              <patter>\.jks</patter>-->
-<!--              <patter>\.factories</patter>-->
-<!--              <patter>\.txt</patter>-->
-<!--              <patter>\.css</patter>-->
-<!--              <patter>\.html</patter>-->
-<!--              <patter>\.js</patter>-->
-<!--              <patter>\.map</patter>-->
-<!--              <patter>\.png</patter>-->
-<!--            </patterns>-->
-<!--          </filter>-->
-<!--        </xjcSourceExcludeFilters>-->
-<!--      </configuration>-->
-<!--    </plugin>-->
   </plugins>
   </build>
 </project>
