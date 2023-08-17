@@ -36,7 +36,7 @@ public class Algorytm {
         Imgcodecs.imwrite(PATH + IMAGE_NAME + ".png", image);
 
         Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath("C:\\Users\\annam\\Desktop\\tessdata\\tessdata"); //set directory to trained models
+        tesseract.setDatapath("C:\\Users\\annam\\Desktop\\tessdata\\tessdata");
 
         Imgcodecs imageCodecs = new Imgcodecs();
 
@@ -51,7 +51,7 @@ public class Algorytm {
             Imgproc.cvtColor(img, imgGray, Imgproc.COLOR_BGR2GRAY);
             Imgcodecs.imwrite(PATH + "Gray " + i + ".png", imgGray);
 
-            String table = tesseract.doOCR(new File(PATH + "Gray " + i + ".png")); //call tesseract function, processing file with OCR technique
+            String table = tesseract.doOCR(new File(PATH + "Gray " + i + ".png"));
 
             System.out.println(table);
 
