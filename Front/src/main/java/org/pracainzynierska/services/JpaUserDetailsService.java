@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
 
-    // pobranie z bazy informacji nt usera o konkretnym username
         @Autowired
         private WSClient wsClient;
 
