@@ -25,10 +25,6 @@ public class AuthenticationProviderService implements AuthenticationProvider {
     @Autowired
     private HttpSession session;
 
-    // nie sprawdza? ale pobiera użytkownika o podanym username z bazy
-    // i następnie sprawdza czy podane hasło jest odpowienie
-    // w funkcji checkPassword sprawdzamy również czy użytkownik,
-    // który chce się zalogować ma uprawnienia administratora
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
